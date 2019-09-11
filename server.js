@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const mongoose = require('mongoose');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -12,6 +13,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
+
+// Connect MongoDB
+const uri = process.env.ATLAS_URI
+mongoose.connect(uri, 
+  { 
+    useNewUrlParser: true, 
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  });
+
+  const connection = mongoose.connection;
+  connection.once('open', () => {
+    // when connection succeede
+    console.log("mongoDB connection worked!")
+  })
+
+
+
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
