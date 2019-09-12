@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+
+import './room-list.styles.scss';
 
 const RoomList = () => (
     <>
@@ -35,8 +37,8 @@ const RoomList = () => (
                 <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
                 <p className='mt-2'>Private room Davy street</p>
                 <h3 className='mt-2 mb-2'>Title</h3>
-           
-           </Link>     <p>$700</p>
+                <p>$700</p>
+           </Link>    
             </li>
         </ul>
         <button className='btn btn-danger'>View</button>
