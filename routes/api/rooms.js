@@ -10,12 +10,14 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const { title, address, roomtype, privateroom, userinfo } = req.body
+  const { title, address, area, roomtype, privateroom, price, userinfo } = req.body
   const newRooms = new Rooms({
     title,
     address,
+    area,
     roomtype,
     privateroom,
+    price,
     userinfo: {
       userid: userinfo.userid,
       username: userinfo.username,
@@ -28,13 +30,15 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  const { title, address, roomtype, privateroom, userinfo } = req.body
+  const { title, address, area, roomtype, privateroom, price, userinfo } = req.body
   Rooms.findById(req.params.id)
     .then(room => {
       room.title = title,
       room.address = address,
+      room.area = area,
       room.roomtype = roomtype,
       room.privateroom = privateroom
+      room.price = price
       room.userinfo = userinfo
 
       room.save()
@@ -48,5 +52,13 @@ router.delete('/:id', (req, res) => {
     .then(() => res.json('Room is deleted!'))
     .catch(err => res.status(400).json({ "error": {err} }))
 })
+
+router.get('/:area', (req, res) => {
+  Rooms.find({ area: req.params.area}, null, { limit: 15})
+    .then(rooms => res.json(rooms))
+    .catch(err => res.status(400).json({ "error": {err} }))
+})
+
+
 
 module.exports = router
