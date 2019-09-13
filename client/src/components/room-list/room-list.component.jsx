@@ -1,125 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import AreaRoomList from './AreaRoomList';
 import './room-list.styles.scss';
 
-const RoomList = () => (
+const RoomList = () => {
+  return (
     <>
-    <section className='mt-5 container'>
+      <section className='mt-5 container'>
         <h2 className='mb-3'>Downtown</h2>
         <ul className='row mb-5'>
-            <li className='col-md-3'>
-                <Link to=''>
-                <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-                <p className='mt-2'>Private room Davy street</p>
-                <h3 className='mt-2 mb-2'>Title</h3>
-                <p>$700</p>
-                </Link>
-            </li>
-            <li className='col-md-3'>
-                <Link to=''>
-                <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-                <p className='mt-2'>Private room Davy street</p>
-                <h3 className='mt-2 mb-2'>Title</h3>
-                <p>$700</p>
-                </Link>
-            </li>
-            <li className='col-md-3'>
-                <Link to=''>
-                <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-                <p className='mt-2'>Private room Davy street</p>
-                <h3 className='mt-2 mb-2'>Title</h3>
-                <p>$700</p>
-                </Link>
-            </li>
-            <li className='col-md-3'>
-                <Link to=''>
-                <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-                <p className='mt-2'>Private room Davy street</p>
-                <h3 className='mt-2 mb-2'>Title</h3>
-                <p>$700</p>
-           </Link>    
-            </li>
+          <AreaRoomList area={'downtown'}/>
         </ul>
         <button className='btn btn-danger'>View</button>
-    </section>
-    <section className='mt-5 container'>
-    <h2 className='mb-3'>Downtown</h2>
-    <ul className='row mb-5'>
-        <li className='col-md-3'>
-            <Link to=''>
-            <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-            <p className='mt-2'>Private room Davy street</p>
-            <h3 className='mt-2 mb-2'>Title</h3>
-            <p>$700</p>
-            </Link>
-        </li>
-        <li className='col-md-3'>
-            <Link to=''>
-            <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-            <p className='mt-2'>Private room Davy street</p>
-            <h3 className='mt-2 mb-2'>Title</h3>
-            <p>$700</p>
-            </Link>
-        </li>
-        <li className='col-md-3'>
-            <Link to=''>
-            <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-            <p className='mt-2'>Private room Davy street</p>
-            <h3 className='mt-2 mb-2'>Title</h3>
-            <p>$700</p>
-            </Link>
-        </li>
-        <li className='col-md-3'>
-            <Link to=''>
-            <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-            <p className='mt-2'>Private room Davy street</p>
-            <h3 className='mt-2 mb-2'>Title</h3>
-       
-       </Link>     <p>$700</p>
-        </li>
-    </ul>
-    <button className='btn btn-danger'>View</button>
-</section>
-<section className='mt-5 container'>
+      </section>
+
+      <section className='mt-5 container'>
+        <h2 className='mb-3'>Robson</h2>
+        <ul className='row mb-5'>
+          <AreaRoomList area={'robson'}/>
+        </ul>
+        <button className='btn btn-danger'>View</button>
+      </section>
+
+      <section className='mt-5 container'>
         <h2 className='mb-3'>Downtown</h2>
         <ul className='row mb-5'>
-            <li className='col-md-3'>
-                <Link to=''>
-                <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-                <p className='mt-2'>Private room Davy street</p>
-                <h3 className='mt-2 mb-2'>Title</h3>
-                <p>$700</p>
-                </Link>
-            </li>
-            <li className='col-md-3'>
-                <Link to=''>
-                <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-                <p className='mt-2'>Private room Davy street</p>
-                <h3 className='mt-2 mb-2'>Title</h3>
-                <p>$700</p>
-                </Link>
-            </li>
-            <li className='col-md-3'>
-                <Link to=''>
-                <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-                <p className='mt-2'>Private room Davy street</p>
-                <h3 className='mt-2 mb-2'>Title</h3>
-                <p>$700</p>
-                </Link>
-            </li>
-            <li className='col-md-3'>
-                <Link to=''>
-                <img src={`${process.env.PUBLIC_URL}/images/room-list-01.jpg`} alt=""/>
-                <p className='mt-2'>Private room Davy street</p>
-                <h3 className='mt-2 mb-2'>Title</h3>
-           
-           </Link>     <p>$700</p>
-            </li>
+          <AreaRoomList area={'hastings'} />
         </ul>
         <button className='btn btn-danger'>View</button>
-    </section>
+      </section>
     </>
-)
+)}
 
 export default RoomList;
