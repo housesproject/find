@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Form from '../form/form.component';
 
 import './header.styles.scss';
 
 const Header = () => {
     const [opneNav, setOpenNav] = useState(false);
+    const [popUp, setPopUp] = useState(false);
+    const [showName, setShowName] = useState('');
+
     if(opneNav) {
         document.querySelector('.hamburger').classList.add('nav-open');
         document.querySelector('.global-nav').classList.add('nav-open');
@@ -12,14 +16,15 @@ const Header = () => {
         document.querySelector('.hamburger').classList.remove('nav-open');
         document.querySelector('.global-nav').classList.remove('nav-open');
     }
-    const handleClick = () => {
-        if(opneNav) {
-            setOpenNav(false);
-        } else {
-            setOpenNav(true);
-        }
+    
+    const openPopup = () => {
+        if(popUp) {
+            return <Form onCancel={() => setPopUp(false)} showName={showName} />;
+        } 
     }
+    
     return (
+        <>
         <header className='header row'>
             <Link className='col-4' to='/'>FIND</Link>
             <nav role='navigation' className='navbar navbar-expand-sm justify-content-end container global-nav col-8'>
@@ -27,24 +32,26 @@ const Header = () => {
                     <li className='nav-item'>
                         <Link className='nav-link' to='/'>Home</Link>
                     </li>
-                    <li className='nav-item nav-link'>
+                    <li className='nav-item nav-link' onClick={() => (setShowName('post'), setPopUp(true)) } >
                         Post
                     </li>
-                    <li className='nav-item nav-link'>
+                    <li className='nav-item nav-link' onClick={() => (setShowName('signIn'), setPopUp(true)) }>
                         Sign In
                     </li>
-                    <li className='nav-item nav-link'>
+                    <li className='nav-item nav-link' onClick={() => (setShowName('signUp'), setPopUp(true)) }>
                         Sign Up
                     </li>
                 </ul>
             </nav>
-            <div className='hamburger' onClick={handleClick} >
+            <div className='hamburger' onClick={() => setOpenNav(!opneNav)} >
                 <span className='hamburger__line hamburger__line--1'></span>
                 <span className='hamburger__line hamburger__line--2'></span>
                 <span className='hamburger__line hamburger__line--3'></span>
             </div>
             <div className='black-bg'></div>
-    </header>
+        </header>
+        {openPopup()}
+        </>
 )};
 
 export default Header;
