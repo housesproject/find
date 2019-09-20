@@ -40,6 +40,7 @@ const Home = props => {
                 </div>
             </div>
         </div>
+        {}
         <RoomList />
         </>
     );
