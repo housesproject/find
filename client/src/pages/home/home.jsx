@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 
 import RoomList from '../../components/room-list/room-list.component';
+import CustomButton from '../../components/custom-button/custom-button.component';
 
 import './home.styles.scss';
 
@@ -35,7 +36,7 @@ const Home = props => {
                             />
                         </li>
                     </ul>
-                    <button type='button' className='btn btn-danger'>Serach</button>
+                    <CustomButton type='submit' className='btn btn-danger'>Serach</CustomButton>
                 </form>
                 </div>
             </div>

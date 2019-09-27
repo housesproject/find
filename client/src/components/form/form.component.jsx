@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import SignIn from '../sign-in/sign-in.component';
+import SignInSignUp from '../sign-in/signIn-signUp.component';
 
 import './form.styles.scss';
 
 const Form = (props) => {
-    console.log(props);
     const popUpCompoent = () => {
         const { showName, onCancel } = props;
         switch(showName) {
             case 'signIn':
                     return (
-                        <SignIn onCancel={onCancel}/>
+                        <SignInSignUp onCancel={onCancel} showName={showName} showComponent={true} />
                     );
              case 'signUp':
                    return (
-                        <div>signUp</div>
+                        <SignInSignUp onCancel={onCancel} showName={showName} showComponent={false} />
                    );   
              case 'post':
                 return (
