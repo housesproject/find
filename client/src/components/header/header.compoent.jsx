@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Form from '../form/form.component';
 
 import './header.styles.scss';
+import { auth } from '../../firebase/firebase.util';
 
 const Header = (props) => {
     const [opneNav, setOpenNav] = useState(false);
@@ -40,6 +41,7 @@ const Header = (props) => {
         return (
             <>
                 <li className='nav-item nav-link' onClick={() => (setShowName('post'), setPopUp(true)) } >Post</li>
+                <li className='nav-item nav-link' onClick={() => {auth.signOut()} } >Logout</li>
             </>
         )
     }

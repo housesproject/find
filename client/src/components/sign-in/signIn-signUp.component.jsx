@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { auth, signInWithGoogle, createUserProfileDocument } from '../../firebase/firebase.util';
+import { auth, signInWithGoogle, createUserProfileDocument, signInwithFacebook } from '../../firebase/firebase.util';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
@@ -69,7 +69,8 @@ const SignIn = ({onCancel, showComponent}) => {
           if(show) {
             return (
                 <>
-                <button className='sign-in-sns btn btn-secondary' onClick={signInWithGoogle}><i className="fa fa-google" />Sign in with Google</button>
+                <button className="sign-in-sns btn btn-fb mb-3" onClick={signInwithFacebook}><i className="fa fa-facebook" />Sign In with Facebook</button>
+                <button className='sign-in-sns btn btn-gl' onClick={signInWithGoogle}><i className="fa fa-google" />Sign in with Google</button>
                 <p className='text-center mt-5 mb-5 line-border'>Or</p>
                 <form onSubmit={signInHandleSubmit}>
                     <div className='mb-5'>
