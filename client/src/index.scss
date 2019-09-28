@@ -64,6 +64,9 @@ a {
 		text-decoration: none;
 	}
 }
+button:hover {
+	opacity: 0.8;
+}
 blockquote, q {
 	quotes: none;
 }
@@ -90,11 +93,15 @@ header a {
   }
 }
 .btn {
+	max-width: 300px;
 	width: 100%;
 	height: 40px;
-    margin: 0 auto;
-    font-size: 1.6rem;
-    display: block;
+	margin: 0 auto;
+	font-size: 1.6rem;
+	display: block;
+	&:hover {
+		opacity: 0.8;
+	} 
 }
 .line-border {
 	position: relative;
@@ -117,3 +124,19 @@ header a {
 		right: 0;
 	}
 }
+.btn-fb {
+	background-color: #3b5998!important;
+}
+.btn-gl {
+    background-color: #dd4b39!important;
+}
+.btn-fb,
+.btn-gl {
+	color: white;
+	.fa {
+		margin-right: 5px;
+	}
+	&:hover {
+		color: white;
+	}
+} 

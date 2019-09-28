@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import Form from '../form/form.component';
 
 import './header.styles.scss';
+import { auth } from '../../firebase/firebase.util';
 
-const Header = () => {
+const Header = (props) => {
     const [opneNav, setOpenNav] = useState(false);
     const [popUp, setPopUp] = useState(false);
     const [showName, setShowName] = useState('');
@@ -22,6 +23,28 @@ const Header = () => {
             return <Form onCancel={() => setPopUp(false)} showName={showName} />;
         } 
     }
+
+    const notSignComponent = () => {
+        return (
+            <>
+                <li className='nav-item nav-link' onClick={() => (setShowName('signIn'), setPopUp(true)) }>
+                    Sign In
+                </li>
+                <li className='nav-item nav-link' onClick={() => (setShowName('signUp'), setPopUp(true)) }>
+                    Sign Up
+                </li>
+            </>
+        )
+    }
+
+    const SignComponent = () => {
+        return (
+            <>
+                <li className='nav-item nav-link' onClick={() => (setShowName('post'), setPopUp(true)) } >Post</li>
+                <li className='nav-item nav-link' onClick={() => {auth.signOut()} } >Logout</li>
+            </>
+        )
+    }
     
     return (
         <>
@@ -32,15 +55,9 @@ const Header = () => {
                     <li className='nav-item'>
                         <Link className='nav-link' to='/'>Home</Link>
                     </li>
-                    <li className='nav-item nav-link' onClick={() => (setShowName('post'), setPopUp(true)) } >
-                        Post
-                    </li>
-                    <li className='nav-item nav-link' onClick={() => (setShowName('signIn'), setPopUp(true)) }>
-                        Sign In
-                    </li>
-                    <li className='nav-item nav-link' onClick={() => (setShowName('signUp'), setPopUp(true)) }>
-                        Sign Up
-                    </li>
+                    {
+                        props.currentUser ?  SignComponent() : notSignComponent()
+                    }
                 </ul>
             </nav>
             <div className='hamburger' onClick={() => setOpenNav(!opneNav)} >
