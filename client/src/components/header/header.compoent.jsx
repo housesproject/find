@@ -6,6 +6,7 @@ import './header.styles.scss';
 import { auth } from '../../firebase/firebase.util';
 
 const Header = (props) => {
+    const [dropDown, setDropDwon] = useState(false);
     const [opneNav, setOpenNav] = useState(false);
     const [popUp, setPopUp] = useState(false);
     const [showName, setShowName] = useState('');
@@ -38,10 +39,20 @@ const Header = (props) => {
     }
 
     const SignComponent = () => {
+        const {photoURL, userName} = props.currentUser;
         return (
             <>
                 <li className='nav-item nav-link' onClick={() => (setShowName('post'), setPopUp(true)) } >Post</li>
-                <li className='nav-item nav-link' onClick={() => {auth.signOut()} } >Logout</li>
+                <li className='nav-item nav-link user-link' onClick={() => setDropDwon(!dropDown)}>
+                    <img src={photoURL? photoURL : `${process.env.PUBLIC_URL}/images/user-default-img.png`} alt={userName}/>
+                    {
+                        dropDown ? 
+                        <ul className='user-drop-down'>
+                            <li className='nav-item nav-link' onClick={() => {auth.signOut()} } >Logout</li>
+                        </ul> 
+                        : ''
+                    }
+                </li>
             </>
         )
     }
@@ -68,7 +79,7 @@ const Header = (props) => {
             </div>
             <div className='black-bg'></div>
         </header>
-        {openPopup()}
+        { props.currentUser ? () => setPopUp(false) : openPopup()}
         </>
 )};
 

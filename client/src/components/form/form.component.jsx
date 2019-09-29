@@ -10,11 +10,11 @@ const Form = (props) => {
         switch(showName) {
             case 'signIn':
                     return (
-                        <SignInSignUp onCancel={onCancel} showName={showName} showComponent={true} />
+                        <SignInSignUp onCancel={onCancel} showName={showName} />
                     );
              case 'signUp':
                    return (
-                        <SignInSignUp onCancel={onCancel} showName={showName} showComponent={false} />
+                        <SignInSignUp onCancel={onCancel} showName={showName} />
                    );   
              case 'post':
                 return (
