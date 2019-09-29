@@ -46,6 +46,8 @@ class App extends React.Component {
       <>
       <Header currentUser={this.state.currentUser} />
       <Route exact path='/' component={Home} />
+      <Route exact path='/:category' component={Home} />
+      {/* <Route exact path={`/:${category}`} component={Home} /> */}
       <Footer />
     </>
     );

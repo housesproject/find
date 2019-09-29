@@ -11,7 +11,7 @@ const useRooms = (area) => {
 
   useEffect(() => {
       fetchRoom();
-  }, [])
+  })
   return rooms;
 };
 
