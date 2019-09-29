@@ -66,7 +66,6 @@ const Header = (props) => {
                     <li className='nav-item'>
                         <Link className='nav-link' to='/'>Home</Link>
                     </li>
-                    
                     {
                         props.currentUser ?  SignComponent() : notSignComponent()
                     }

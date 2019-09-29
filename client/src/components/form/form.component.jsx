@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import SignInSignUp from '../sign-in/signIn-signUp.component';
 
 import './form.styles.scss';

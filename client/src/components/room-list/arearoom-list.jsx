@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 import useRooms from './useRooms';
 
-const AreaRoomList = ({ area }) => {
+const AreaRoomList = ({ area, listNum }) => {
   const rooms = useRooms(area);
   return (
       rooms.filter((rooms, index) => {
-          return index < 4
+          return index < listNum
       }).map(room => (
           <li key={room._id} className='col-md-3'> 
               <Link to=''>
