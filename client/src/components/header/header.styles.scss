@@ -16,6 +16,10 @@ header {
             color: #666666;
         }
     }
+    .navbar-nav {
+        align-items: center;
+        position: relative;
+    }
     .nav-item {
         margin-left: 10px;
         &:first-child {
@@ -28,6 +32,35 @@ header {
         &:hover  {
             color: #666666;
             opacity: .8;
+        }
+    }
+    .user-link {
+        padding: 5px;
+        &:hover {
+            opacity: unset;
+        }
+        img {
+            width: auto;
+            height: 30px;
+            border-radius: 100%;
+            border: 1px solid #ccc;
+        }
+        .user-drop-down {
+            width: 100%;
+            max-width: 300px;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            li {
+                padding-bottom: 10px;
+                border-bottom: 1px solid #ccc; 
+            }
+            &:hover {
+                opacity: unset;
+            }
         }
     }
     @media screen and (max-width: 768px) {
