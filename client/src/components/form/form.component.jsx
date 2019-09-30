@@ -14,11 +14,7 @@ const Form = (props) => {
              case 'signUp':
                    return (
                         <SignInSignUp onCancel={onCancel} showName={showName} />
-                   );   
-             case 'post':
-                return (
-                        <div>post</div>
-            );           
+                   );        
             default:
                 return;    
         }

@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Form from '../form/form.component';
 
 import './header.styles.scss';
 import { auth } from '../../firebase/firebase.util';
+import Post from '../post/post.component';
 
 const Header = (props) => {
     const [dropDown, setDropDwon] = useState(false);
     const [opneNav, setOpenNav] = useState(false);
     const [popUp, setPopUp] = useState(false);
     const [showName, setShowName] = useState('');
+
+    useEffect(() => {
+        return () => {
+            setPopUp(false);
+        }
+    });
 
     if(opneNav) {
         document.querySelector('.hamburger').classList.add('nav-open');
@@ -20,9 +27,15 @@ const Header = (props) => {
     }
     
     const openPopup = () => {
-        if(popUp) {
-            return <Form onCancel={() => setPopUp(false)} showName={showName} />;
-        } 
+        if(props.currentUser) {
+            if(popUp) {
+                return <Post onCancel={() => setPopUp(false)} />;
+            }
+        } else {
+            if(popUp) {
+                return <Form onCancel={() => setPopUp(false)} showName={showName} />;
+            } 
+        }
     }
 
     const notSignComponent = () => {
@@ -78,7 +91,7 @@ const Header = (props) => {
             </div>
             <div className='black-bg'></div>
         </header>
-        { props.currentUser ? () => setPopUp(false) : openPopup()}
+        { openPopup()}
         </>
 )};
 
