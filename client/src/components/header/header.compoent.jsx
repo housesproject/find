@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Form from '../form/form.component';
-
 import './header.styles.scss';
 import { auth } from '../../firebase/firebase.util';
 import Post from '../post/post.component';
+import Form from '../form/form.component';
 
 const Header = (props) => {
     const [dropDown, setDropDwon] = useState(false);
     const [opneNav, setOpenNav] = useState(false);
     const [popUp, setPopUp] = useState(false);
     const [showName, setShowName] = useState('');
-
-    useEffect(() => {
-        return () => {
-            setPopUp(false);
-        }
-    });
 
     if(opneNav) {
         document.querySelector('.hamburger').classList.add('nav-open');
@@ -27,14 +20,14 @@ const Header = (props) => {
     }
     
     const openPopup = () => {
-        if(props.currentUser) {
-            if(popUp) {
-                return <Post onCancel={() => setPopUp(false)} />;
-            }
-        } else {
+        if(!props.currentUser) {
             if(popUp) {
                 return <Form onCancel={() => setPopUp(false)} showName={showName} />;
             } 
+        } else {
+            if(popUp) {
+                return <Post onCancel={() => setPopUp(false)} />;
+            }
         }
     }
 

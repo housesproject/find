@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { auth, signInWithGoogle, createUserProfileDocument, signInwithFacebook } from '../../firebase/firebase.util';
 import FormInput from '../form-input/form-input.component';
@@ -7,6 +7,11 @@ import CustomButton from '../custom-button/custom-button.component';
 import './signIn-signUp.styles.scss';
 
 const SignIn = ({onCancel, showName}) => {
+    useEffect(() => {
+        return () => {
+            onCancel();
+        }
+    },[]);
     const [show, setShow] = useState(showName);
     const [confrimEmail, setConfrimEmail] = useState('');
     const [emailAndPassword, setEmailAndPassword] = useState({
