@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 
-import { auth, createUserProfileDocument, sendTest } from '../../firebase/firebase.util';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
@@ -28,7 +27,7 @@ const Post= ({onCancel}) => {
 
     const postHandleSubmit = event => {
         event.preventDefault();
-        sendTest(postInfo);
+        console.log(postInfo);
     };
     
     const handleChange = event => {
