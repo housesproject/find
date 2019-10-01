@@ -45,5 +45,6 @@ const fcProvider = new firebase.auth.FacebookAuthProvider();
 export const signInwithFacebook =  () => auth.signInWithPopup(fcProvider);
 provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const sendTest = (info) => console.log(info);
 
 export default firebase;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Form from '../form/form.component';
-
 import './header.styles.scss';
 import { auth } from '../../firebase/firebase.util';
+import Post from '../post/post.component';
+import Form from '../form/form.component';
 
 const Header = (props) => {
     const [dropDown, setDropDwon] = useState(false);
@@ -20,9 +20,15 @@ const Header = (props) => {
     }
     
     const openPopup = () => {
-        if(popUp) {
-            return <Form onCancel={() => setPopUp(false)} showName={showName} />;
-        } 
+        if(!props.currentUser) {
+            if(popUp) {
+                return <Form onCancel={() => setPopUp(false)} showName={showName} />;
+            } 
+        } else {
+            if(popUp) {
+                return <Post onCancel={() => setPopUp(false)} />;
+            }
+        }
     }
 
     const notSignComponent = () => {
@@ -78,7 +84,7 @@ const Header = (props) => {
             </div>
             <div className='black-bg'></div>
         </header>
-        { props.currentUser ? () => setPopUp(false) : openPopup()}
+        { openPopup()}
         </>
 )};
 
