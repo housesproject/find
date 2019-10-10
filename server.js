@@ -1,47 +1,17 @@
 const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const path = require('path');
 const mongoose = require('mongoose');
+const keys = require('./config/keys');
+bodyParser = require('body-parser');
+require('./modals/roomModal');
 
-if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+mongoose.connect(keys.mongoURI);
 
 const app = express();
-const port = process.env.PORT || 5000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-app.use(cors());
+require('./routes/roomsRoute')(app);
 
-// Connect MongoDB
-const uri = process.env.ATLAS_URI
-mongoose.connect(uri, 
-  { 
-    useNewUrlParser: true, 
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  });
-
-  const connection = mongoose.connection;
-  connection.once('open', () => {
-    // when connection succeede
-    console.log("mongoDB connection worked!")
-  })
-
-
-app.use('/api/rooms', require('./routes/api/rooms'));
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
-
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
-
-app.listen(port, error => {
-  if (error) throw error;
-  console.log('Server running on port ' + port);
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);

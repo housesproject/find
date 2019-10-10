@@ -34,7 +34,7 @@ const SignIn = ({onCancel, showName}) => {
             }
             );
         } catch (error) {
-          console.log(error);
+          console.log(error.message);
         }
       };
 
@@ -61,7 +61,7 @@ const SignIn = ({onCancel, showName}) => {
                 displayName:'',
           })  ;
         } catch (error) {
-          console.log(error);
+          console.log(error.message);
         }
       };
 
@@ -72,22 +72,22 @@ const SignIn = ({onCancel, showName}) => {
             await auth.sendPasswordResetEmail(confrimEmail);
             alert('Send your email address');
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }
       }
     
       const handleChange = event => {
         const { value, name } = event.target;
-        if(show == 'signIn') {
+        if(show === 'signIn') {
             setEmailAndPassword({...emailAndPassword, [name]: value });
-        } else if(show == 'forgetPass') {
+        } else if(show === 'forgetPass') {
             setConfrimEmail(value);
-        } else if(show == 'signUp') {
+        } else if(show === 'signUp') {
             setSignUpInfo({...signUpInfo, [name]: value });
         }
       };
       const renderSignIn = () => {
-          if(show == 'signIn') {
+          if(show === 'signIn') {
             return (
                 <>
                 <button className="sign-in-sns btn btn-fb mb-3" onClick={signInwithFacebook}><i className="fa fa-facebook" />Sign In with Facebook</button>
@@ -119,7 +119,7 @@ const SignIn = ({onCancel, showName}) => {
                 </form>
                 </>
             )
-          } else if(show == 'forgetPass') {
+          } else if(show === 'forgetPass') {
             return (
                 <>
                 <form onSubmit={forgotSugmit}>
@@ -139,7 +139,7 @@ const SignIn = ({onCancel, showName}) => {
                 </form>
                 </>
               )
-          } else if(show == 'signUp') {
+          } else if(show === 'signUp') {
               return (
                 <>
                 <form onSubmit={signUpHandleSubmit}>

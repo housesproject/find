@@ -26,7 +26,7 @@ const Header = (props) => {
             } 
         } else {
             if(popUp) {
-                return <Post onCancel={() => setPopUp(false)} />;
+                return <Post onCancel={() => setPopUp(false)} user={props.currentUser} />;
             }
         }
     }
@@ -66,7 +66,7 @@ const Header = (props) => {
     return (
         <>
         <header className='header row'>
-            <Link className='col-4' to='/'>FIND</Link>
+            <Link className='col-4 logo' to='/'><img src={`${process.env.PUBLIC_URL}/images/logo.svg`} alt="FIND:LOGO"/></Link>
             <nav role='navigation' className='navbar navbar-expand-sm justify-content-end container global-nav col-8'>
                 <ul id='menu' className='navbar-nav global-nav__list'>
                     <li className='nav-item'>

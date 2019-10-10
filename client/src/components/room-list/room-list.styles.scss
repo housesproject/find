@@ -1,5 +1,12 @@
-section {
-    ul li {
+.rooms-section {
+    margin-top: 100px;
+    .room-list {
+        li {
+            margin-bottom: 30px;
+        }
+        h3 {
+            margin: 5px 0;
+        }
         a {
             color: #212529;
             &:hover {
@@ -7,4 +14,21 @@ section {
             }
         }
     }
+    .thumb-nail {
+        height: 200px;
+        margin-bottom: 10px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+        @media screen and (max-width: 1024px) {
+            height: 150px;
+        }
+        @media screen and (max-width: 468px) {
+            height: 250px;
+        }
+    }
+}
+.row.rooms-section {
+    padding: 0;
 }
