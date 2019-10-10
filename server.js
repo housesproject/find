@@ -4,7 +4,8 @@ const keys = require('./config/keys');
 bodyParser = require('body-parser');
 require('./modals/roomModal');
 
-mongoose.connect(keys.mongoURI);
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 
