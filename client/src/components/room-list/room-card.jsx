@@ -1,6 +1,5 @@
 import React, { useState }  from 'react';
 import { Link } from 'react-router-dom';
-import { relative } from 'path';
 
 import './room-card.scss';
 

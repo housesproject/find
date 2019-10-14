@@ -14,7 +14,7 @@ export const fetchRoomDetail = (roomID) => async dispatch => {
 }
 
 export const submitRoom = (roomInfo, onCancel) => async dispatch => {
-    const res = axios.post('/api/post', {roomInfo});
+    const res = await axios.post('/api/post', {roomInfo});
     dispatch({type: RoomActionTypes.FETCH_ROOMS, payload: res.data});
     onCancel();
 };

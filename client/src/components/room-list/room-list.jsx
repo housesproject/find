@@ -8,6 +8,7 @@ import { RoomCard } from './room-card'
 import './room-list.styles.scss';
 
 const RoomList = (props) => {
+    console.log("roomlist User", props)
     useEffect(()=> {
         props.fetchRooms();
     },[]);
@@ -39,7 +40,8 @@ const RoomList = (props) => {
 }
 const mapStateToProps = state => {
     return {
-        rooms: state.rooms
+        rooms: state.rooms,
+        user: state.user.user,
     }
   }
   
