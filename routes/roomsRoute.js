@@ -29,15 +29,17 @@ module.exports = app => {
     });
 
     app.post('/api/post', (request, response) => {
-      const {title, area, street, describe, price, available, houseType, roomSize, roomType, bath, availableSmoke, landry, parking, img1, img2, img3, img4, img5, userInfo, amenities} = request.body.roomInfo;
+      const {roomId, title, area, street, describe, price, available, houseType, roomSize, roomType, bath, availableSmoke, landry, parking, userInfo, amenities} = request.body.roomInfo;
       const {userId, userName, userEmail, userPhoto} = userInfo;
       const {wifi, water, pet, gym} = amenities;
+      console.log(request.body);
       const url = title;
       url.replace(/\s+/g, "");
       let strDate = available;
       let availableDate = strDate.split('T');
       const room = new Room({
         atDate: new Date(),
+        roomId,
         title,
         area,
         street,
@@ -51,11 +53,6 @@ module.exports = app => {
         availableSmoke,
         landry,
         parking,
-        img1,
-        img2,
-        img3,
-        img4,
-        img5,
         userInfo: {
           userId,
           userName,
@@ -67,7 +64,14 @@ module.exports = app => {
           water,
           pet,
           gym
-      }
+        },
+        imgUrl: {
+          img1: request.body.arryImage[0],
+          img2: request.body.arryImage[1],
+          img3: request.body.arryImage[2],
+          img4: request.body.arryImage[3],
+          img5: request.body.arryImage[4]
+        }
       });
       try{
         room.save();

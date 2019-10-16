@@ -18,7 +18,7 @@ const RoomList = (props) => {
                 return (
                     <li className='col-md-3' key={room._id}>
                         <Link to={`room-detail/${room._id}`}>
-                            <div className='thumb-nail' style={{backgroundImage: `url(${room.img1 ? room.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
+                            <div className='thumb-nail' style={{backgroundImage: `url(${room.imgUrl.img1 ? room.imgUrl.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
                             <p>{room.roomSize}</p>
                             <h3>{sliceTitle}</h3>
                             <p>${room.price}</p>
@@ -35,7 +35,7 @@ const RoomList = (props) => {
                     return (
                         <li className='col-md-3' key={room._id}>
                             <Link to={`room-detail/${room._id}`}>
-                                <div className='thumb-nail' style={{backgroundImage: `url(${room.img1 ? room.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
+                                <div className='thumb-nail' style={{backgroundImage: `url(${room.imgUrl.img1 ? room.imgUrl.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
                                 <p>{room.roomSize}</p>
                                 <h3>{sliceTitle}</h3>
                                 <p>${room.price}</p>
@@ -51,7 +51,7 @@ const RoomList = (props) => {
                     return (
                         <li className='col-md-3' key={room._id}>
                             <Link to={`room-detail/${room._id}`}>
-                                <div className='thumb-nail' style={{backgroundImage: `url(${room.img1 ? room.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
+                                <div className='thumb-nail' style={{backgroundImage: `url(${room.imgUrl.img1 ? room.imgUrl.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
                                 <p>{room.roomSize}</p>
                                 <h3>{sliceTitle}</h3>
                                 <p>${room.price}</p>
@@ -70,6 +70,7 @@ const RoomList = (props) => {
     }
 }
 const mapStateToProps = state => {
+    console.log(state.rooms);
     return {
         rooms: state.rooms
     }

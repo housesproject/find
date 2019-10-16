@@ -1,7 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import 'firebase/storage';
 import keys from '../config/keys';
+import { ar } from 'date-fns/locale';
 
 const config = {
     apiKey: keys.REACT_APP_API_KEY,
@@ -39,6 +41,23 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
     return userRef;
 }
+
+export const createRoomImage = async (images, roomId) => {
+    const arryImage = [];
+    await Promise.all(
+        Object.values(images).map( async (img) => {
+            await firebase.storage().ref(`images/${roomId}/${img.file.name}`).put(img.file);
+            await firebase.storage()
+                    .ref(`images/${roomId}`)
+                    .child(img.file.name)
+                    .getDownloadURL()
+                    .then(url => {
+                        arryImage.push(url);
+                    })
+        })
+    );
+    return arryImage;
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
