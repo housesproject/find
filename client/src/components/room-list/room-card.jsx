@@ -16,7 +16,7 @@ export const RoomCard = ({ room }) => {
   return (
     <li className='col-md-3' style={{ position: "relative" }}>
         <Link to={`room-detail/${room._id}`}>
-            <div className='thumb-nail' style={{backgroundImage: `url(${room.img1 ? room.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
+            <div className='thumb-nail' style={{backgroundImage: `url(${room.imgUrl.img1 ? room.imgUrl.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
             <p>{room.roomSize}</p>
             <h3>{sliceTitle}</h3>
             <p>${room.price}</p>
