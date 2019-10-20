@@ -27,6 +27,7 @@ const RoomList = (props) => {
             } else {
                 return props.rooms.rooms.filter((room) => room.area.toLowerCase().includes(props.areaCategoryName)).map(room => {
                     return <RoomCard room={room} key={room._id} />
+
                     }
                 )
             }
@@ -39,6 +40,7 @@ const RoomList = (props) => {
     }
 }
 const mapStateToProps = state => {
+    console.log(state.rooms);
     return {
         rooms: state.rooms,
         user: state.user.user,
