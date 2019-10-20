@@ -3,61 +3,30 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchRooms } from '../../redux/rooms/rooms.action';
+import { RoomCard } from './room-card'
 
 import './room-list.styles.scss';
 
 const RoomList = (props) => {
+    console.log("roomlist User", props)
     useEffect(()=> {
         props.fetchRooms();
     },[]);
     if(props.rooms.rooms) {
         if(props.category) {
             return props.rooms.rooms.filter((room) => props.category == room.area).filter((room, idx) => idx < 4).map(room => {
-                const title = room.title;
-                const sliceTitle = title.length > 30 ? title.slice(0, 30) + '…' : title;
-                return (
-                    <li className='col-md-3' key={room._id}>
-                        <Link to={`room-detail/${room._id}`}>
-                            <div className='thumb-nail' style={{backgroundImage: `url(${room.imgUrl.img1 ? room.imgUrl.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
-                            <p>{room.roomSize}</p>
-                            <h3>{sliceTitle}</h3>
-                            <p>${room.price}</p>
-                        </Link>
-                    </li>
-                    )
+                return <RoomCard room={room} key={room._id}/>
                 }
             )
         } else {
             if(props.areaCategoryName == 'all') {
                 return props.rooms.rooms.map(room => {
-                    const title = room.title;
-                    const sliceTitle = title.length > 30 ? title.slice(0, 30) + '…' : title;
-                    return (
-                        <li className='col-md-3' key={room._id}>
-                            <Link to={`room-detail/${room._id}`}>
-                                <div className='thumb-nail' style={{backgroundImage: `url(${room.imgUrl.img1 ? room.imgUrl.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
-                                <p>{room.roomSize}</p>
-                                <h3>{sliceTitle}</h3>
-                                <p>${room.price}</p>
-                            </Link>
-                        </li>
-                        )
+                    return <RoomCard room={room} key={room._id} />
                     }
                 )
             } else {
                 return props.rooms.rooms.filter((room) => room.area.toLowerCase().includes(props.areaCategoryName)).map(room => {
-                    const title = room.title;
-                    const sliceTitle = title.length > 30 ? title.slice(0, 30) + '…' : title;
-                    return (
-                        <li className='col-md-3' key={room._id}>
-                            <Link to={`room-detail/${room._id}`}>
-                                <div className='thumb-nail' style={{backgroundImage: `url(${room.imgUrl.img1 ? room.imgUrl.img1: process.env.PUBLIC_URL + '/images/default-img.png'})`}}></div>
-                                <p>{room.roomSize}</p>
-                                <h3>{sliceTitle}</h3>
-                                <p>${room.price}</p>
-                            </Link>
-                        </li>
-                        )
+                    return <RoomCard room={room} key={room._id} />
                     }
                 )
             }
@@ -72,7 +41,8 @@ const RoomList = (props) => {
 const mapStateToProps = state => {
     console.log(state.rooms);
     return {
-        rooms: state.rooms
+        rooms: state.rooms,
+        user: state.user.user,
     }
   }
   
